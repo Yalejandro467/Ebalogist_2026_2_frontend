@@ -1,0 +1,23 @@
+
+<div class="layout">
+    <aside class="sidebar">
+      <h1>E-Balogist</h1>
+      <p class="subtitulo">Gestión del negocio</p>
+  
+      <nav>
+        @for (item of menu; track item.ruta) {
+          <a
+            [routerLink]="item.ruta"
+            routerLinkActive="activo"
+          >
+            {{ item.etiqueta }}
+          </a>
+        }
+      </nav>
+    </aside>
+  
+    <main class="contenido">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+  
