@@ -68,6 +68,8 @@ https://github.com/Yalejandro467/Ebalogist_2026_2_frontend
 
 ## Video de sustentación
 
-Enlace al video de demostración del proyecto:
+En el siguiente enlace se encuentra el video de sustentación del cuarto entregable del proyecto E-Balogist, donde se presenta el funcionamiento del frontend desarrollado en Angular, su integración con el backend y las operaciones CRUD de las entidades.
 
-**PENDIENTE: agregar aquí el enlace del video.**
+**Enlace al video:** https://youtu.be/hdZ_xSUo0gA
+
+**Visibilidad:** Público.
