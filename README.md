@@ -1,63 +1,73 @@
-# EbalogistFrontend
+# E-Balogist – Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.2.
+Aplicación web desarrollada con Angular para la gestión de información de la empresa de carpintería E-Balogist. Este frontend consume una API REST desarrollada con Python y FastAPI.
 
-## Development server
+## Tecnologías utilizadas
 
-To start a local development server, run:
+- Angular 22
+- TypeScript
+- HTML y CSS
+- Python y FastAPI (backend)
+- PostgreSQL mediante Neon (base de datos)
 
-```bash
-ng serve
+## Módulos del sistema
+
+El frontend cuenta con cinco módulos de gestión:
+
+1. **Usuarios:** administración de usuarios.
+2. **Clientes:** registro, consulta, actualización y eliminación de clientes.
+3. **Productos:** gestión del catálogo de productos.
+4. **Pedidos:** administración de pedidos.
+5. **Detalles de pedido:** gestión de los productos asociados a cada pedido.
+
+Cada módulo permite realizar las operaciones CRUD que soporta su respectivo endpoint del backend.
+
+## Requisitos previos
+
+- Node.js y npm.
+- Angular CLI.
+- Python instalado.
+- Backend E-Balogist disponible localmente.
+
+## Cómo ejecutar el proyecto
+
+### 1. Iniciar el backend
+
+Abrir una terminal en la carpeta del proyecto backend y ejecutar:
+
+```powershell
+python -m uvicorn api:app --reload
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+La API estará disponible en:
 
-## Code scaffolding
+http://127.0.0.1:8000
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Documentación interactiva de FastAPI:
 
-```bash
-ng generate component component-name
+http://127.0.0.1:8000/docs
+
+### 2. Iniciar el frontend
+
+Abrir otra terminal en la carpeta del proyecto frontend y ejecutar:
+
+```powershell
+npm install
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Abrir el navegador en:
 
-```bash
-ng generate --help
-```
+http://localhost:4200
 
-## Building
+## Repositorio
 
-To build the project run:
+Repositorio individual del frontend:
 
-```bash
-ng build
-```
+https://github.com/Yalejandro467/Ebalogist_2026_2_frontend
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Video de sustentación
 
-## Running unit tests
+Enlace al video de demostración del proyecto:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
-## Proyecto E-Balogist
-
-Frontend de aplicacion para carpinteria.
+**PENDIENTE: agregar aquí el enlace del video.**

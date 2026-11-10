@@ -1,77 +1,30 @@
-
-:host {
-    display: block;
-    min-height: 100vh;
-  }
-  
-  .layout {
-    display: flex;
-    min-height: 100vh;
-    background: #f4f6f8;
-    color: #1f2937;
-    font-family: Arial, sans-serif;
-  }
-  
-  .sidebar {
-    width: 230px;
-    flex-shrink: 0;
-    padding: 28px 18px;
-    background: #17212b;
-    color: white;
-  }
-  
-  .sidebar h1 {
-    margin: 0;
-    font-size: 25px;
-  }
-  
-  .subtitulo {
-    margin: 8px 0 28px;
-    color: #bdc7d1;
-    font-size: 13px;
-  }
-  
-  .sidebar nav {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .sidebar nav a {
-    padding: 12px;
-    border-radius: 6px;
-    color: #e5e7eb;
-    text-decoration: none;
-  }
-  
-  .sidebar nav a:hover,
-  .sidebar nav a.activo {
-    background: #34495e;
-    color: white;
-  }
-  
-  .contenido {
-    flex: 1;
-    min-width: 0;
-    padding: 30px;
-  }
-  
-  @media (max-width: 700px) {
-    .layout {
-      flex-direction: column;
-    }
-  
-    .sidebar {
-      width: auto;
-    }
-  
-    .sidebar nav {
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-  
-    .contenido {
-      padding: 16px;
-    }
-  }
-  
+﻿:host { display: block; min-height: 100vh; }
+.layout { display: flex; min-height: 100vh; color: #1f2937; background: #f4f6f8; font-family: Arial, sans-serif; }
+.sidebar { position: relative; display: flex; flex: 0 0 245px; flex-direction: column; box-sizing: border-box; min-height: 100vh; padding: 27px 18px 20px; color: #fff; background: #17212b; }
+.marca { display: flex; align-items: center; gap: 11px; padding: 0 8px 27px; border-bottom: 1px solid #ffffff1c; }
+.marca-icono { display: grid; width: 39px; height: 39px; place-items: center; color: #fff; background: #247a43; border-radius: 11px; font-size: 22px; font-weight: 800; }
+.marca h1 { margin: 0; font-size: 20px; }
+.subtitulo { margin: 5px 0 0; color: #bdc7d1; font-size: 11px; }
+.menu-titulo { margin: 28px 10px 12px; color: #8c9aa7; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; }
+.sidebar nav { display: flex; flex-direction: column; gap: 7px; }
+.sidebar nav a { display: flex; align-items: center; gap: 11px; padding: 12px 13px; border-radius: 7px; color: #dce3e9; text-decoration: none; font-size: 13px; transition: .15s; }
+.sidebar nav a:hover, .sidebar nav a.activo { color: #fff; background: #34495e; }
+.sidebar nav a.activo { box-shadow: inset 3px 0 #48b66d; }
+.punto-menu { width: 7px; height: 7px; border: 1px solid #aebbc6; border-radius: 50%; }
+.sidebar nav a.activo .punto-menu { border-color: #65d68a; background: #65d68a; }
+.sidebar-pie { display: flex; align-items: center; gap: 8px; margin-top: auto; padding: 17px 9px 0; border-top: 1px solid #ffffff1c; color: #aebbc6; font-size: 11px; }
+.estado-api { width: 7px; height: 7px; border-radius: 50%; background: #65d68a; }
+.contenido { flex: 1; min-width: 0; }
+.barra-superior { display: flex; height: 61px; align-items: center; justify-content: space-between; box-sizing: border-box; padding: 0 30px; background: #fff; border-bottom: 1px solid #e8edf0; color: #64748b; font-size: 12px; }
+.etiqueta-superior { color: #247a43; font-size: 10px; font-weight: 800; letter-spacing: 1px; }
+.pagina { padding: 30px; }
+@media (max-width: 700px) {
+  .layout { flex-direction: column; }
+  .sidebar { min-height: auto; flex-basis: auto; padding: 16px; }
+  .marca { padding-bottom: 14px; }
+  .menu-titulo, .sidebar-pie { display: none; }
+  .sidebar nav { flex-direction: row; flex-wrap: wrap; margin-top: 14px; }
+  .sidebar nav a { padding: 9px 10px; font-size: 12px; }
+  .barra-superior { height: 48px; padding: 0 17px; }
+  .pagina { padding: 17px; }
+}

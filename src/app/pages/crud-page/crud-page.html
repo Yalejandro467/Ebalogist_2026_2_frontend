@@ -1,0 +1,136 @@
+﻿<section class="crud-contenedor">
+  <header class="crud-encabezado">
+    <div>
+      <p class="sobre-titulo">E-BALOGIST · ADMINISTRACIÓN</p>
+      <h2>{{ config.title }}</h2>
+      <p class="descripcion">{{ config.description }}</p>
+    </div>
+
+    <button class="boton primario" type="button" (click)="abrirCrear()">
+      + Crear registro
+    </button>
+  </header>
+
+  <section class="panel">
+    <div class="barra-herramientas">
+      <form class="busqueda" (ngSubmit)="buscar()">
+        <label for="filtro">{{ config.filterLabel || 'Filtrar por ID' }}</label>
+        <input
+          id="filtro"
+          name="idFiltro"
+          type="number"
+          min="1"
+          [(ngModel)]="idFiltro"
+          [placeholder]="config.filterPlaceholder || 'Escribe un ID'"
+        />
+        <button class="boton primario" type="submit" [disabled]="cargando()">Buscar</button>
+        @if (config.key !== 'detalles-pedido') {
+          <button class="boton secundario" type="button" (click)="limpiarFiltro()" [disabled]="cargando()">
+            Ver todos
+          </button>
+        } @else {
+          <button class="boton secundario" type="button" (click)="limpiarFiltro()" [disabled]="cargando()">
+            Limpiar
+          </button>
+        }
+      </form>
+      <span class="contador">{{ filas().length }} registro(s)</span>
+    </div>
+
+    @if (mensaje()) {
+      <div class="mensaje" [class.error]="esError()" role="status">{{ mensaje() }}</div>
+    }
+
+    @if (cargando()) {
+      <p class="cargando">Consultando información...</p>
+    }
+
+    <div class="tabla-contenedor">
+      <table>
+        <thead>
+          <tr>
+            @for (columna of config.columns; track columna) {
+              <th>{{ etiquetaColumna(columna) }}</th>
+            }
+            <th class="col-acciones">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (fila of filas(); track fila['id']) {
+            <tr>
+              @for (columna of config.columns; track columna) {
+                <td>{{ valorCelda(fila, columna) }}</td>
+              }
+              <td class="acciones">
+                <button class="boton pequeno secundario" type="button" (click)="abrirEditar(fila)">Editar</button>
+                <button class="boton pequeno peligro" type="button" (click)="eliminar(fila)">Eliminar</button>
+              </td>
+            </tr>
+          } @empty {
+            @if (!cargando()) {
+              <tr>
+                <td class="sin-datos" [attr.colspan]="config.columns.length + 1">
+                  No hay registros para mostrar.
+                </td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+</section>
+
+@if (popupAbierto()) {
+  <div class="fondo-modal" (click)="cerrarPopup()">
+    <form class="modal" (click)="$event.stopPropagation()" (ngSubmit)="guardar()">
+      <div class="modal-cabecera">
+        <div>
+          <p class="sobre-titulo">E-BALOGIST</p>
+          <h3>{{ modo() === 'crear' ? 'Crear' : 'Editar' }} {{ config.title.toLowerCase() }}</h3>
+        </div>
+        <button class="cerrar" type="button" (click)="cerrarPopup()" aria-label="Cerrar">×</button>
+      </div>
+
+      <div class="campos">
+        @for (campo of config.fields; track campo.key) {
+          @if (mostrarCampo(campo)) {
+            <label class="campo">
+              <span>{{ campo.label }} @if (campo.required) { <b>*</b> }</span>
+
+              @if (campo.type === 'boolean') {
+                <select [(ngModel)]="formulario[campo.key]" [name]="campo.key">
+                  <option [ngValue]="true">Activo</option>
+                  <option [ngValue]="false">Inactivo</option>
+                </select>
+              } @else {
+                <input
+                  [type]="campo.type"
+                  [name]="campo.key"
+                  [(ngModel)]="formulario[campo.key]"
+                  [required]="campo.required || false"
+                  [step]="campo.type === 'number' ? 'any' : null"
+                  [min]="campo.type === 'number' ? '0' : null"
+                />
+              }
+            </label>
+          }
+        }
+      </div>
+
+      @if (config.key === 'pedidos') {
+        <p class="nota-formulario">El valor total del pedido se calcula automáticamente en el backend.</p>
+      }
+      @if (config.key === 'detalles-pedido') {
+        <p class="nota-formulario">El precio unitario y el subtotal se calculan automáticamente en el backend.</p>
+      }
+
+      <div class="acciones-modal">
+        <button class="boton secundario" type="button" (click)="cerrarPopup()">Cancelar</button>
+        <button class="boton primario" type="submit" [disabled]="cargando()">
+          {{ cargando() ? 'Guardando...' : 'Guardar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+}

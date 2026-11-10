@@ -1,23 +1,36 @@
+﻿<div class="layout">
+  <aside class="sidebar">
+    <div class="marca">
+      <div class="marca-icono">E</div>
+      <div>
+        <h1>E-Balogist</h1>
+        <p class="subtitulo">Gestión del negocio</p>
+      </div>
+    </div>
 
-<div class="layout">
-    <aside class="sidebar">
-      <h1>E-Balogist</h1>
-      <p class="subtitulo">Gestión del negocio</p>
-  
-      <nav>
-        @for (item of menu; track item.ruta) {
-          <a
-            [routerLink]="item.ruta"
-            routerLinkActive="activo"
-          >
-            {{ item.etiqueta }}
-          </a>
-        }
-      </nav>
-    </aside>
-  
-    <main class="contenido">
+    <p class="menu-titulo">MENÚ PRINCIPAL</p>
+    <nav>
+      @for (item of menu; track item.ruta) {
+        <a [routerLink]="item.ruta" routerLinkActive="activo">
+          <span class="punto-menu"></span>
+          {{ item.etiqueta }}
+        </a>
+      }
+    </nav>
+
+    <div class="sidebar-pie">
+      <span class="estado-api"></span>
+      Panel administrativo
+    </div>
+  </aside>
+
+  <main class="contenido">
+    <div class="barra-superior">
+      <span>Panel de gestión</span>
+      <span class="etiqueta-superior">E-BALOGIST</span>
+    </div>
+    <div class="pagina">
       <router-outlet></router-outlet>
-    </main>
-  </div>
-  
+    </div>
+  </main>
+</div>
