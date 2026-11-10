@@ -1,0 +1,37 @@
+
+<div class="layout">
+  <!-- Agregamos la clase condicional si isSidebarCollapsed es verdadero -->
+  <aside class="sidebar" [class.collapsed]="isSidebarCollapsed">
+    
+    <!-- Cabecera del sidebar con el botón para retraer/expandir -->
+    <div class="sidebar-header">
+      @if (!isSidebarCollapsed) {
+        <div>
+          <h1>E-Balogist</h1>
+          <p class="subtitulo">Gestión del negocio</p>
+        </div>
+      }
+      <!-- Botón de control obligatorio para el parcial -->
+      <button class="toggle-btn" (click)="toggleSidebar()" title="Ocultar / Mostrar menú">
+        {{ isSidebarCollapsed ? '▶' : '◀' }}
+      </button>
+    </div>
+
+    <nav>
+      @for (item of menu; track item.ruta) {
+        <a
+          [routerLink]="item.ruta"
+          routerLinkActive="activo"
+          [title]="item.etiqueta"
+        >
+          <!-- Si está contraído, podemos mostrar solo un icono o la primera letra, o mantener el texto si prefieres -->
+          <span class="etiqueta">{{ item.etiqueta }}</span>
+        </a>
+      }
+    </nav>
+  </aside>
+
+  <main class="contenido">
+    <router-outlet></router-outlet>
+  </main>
+</div>

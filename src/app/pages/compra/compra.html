@@ -1,0 +1,56 @@
+<div class="container mt-4">
+  <h2>Gestión de Compras</h2>
+
+  <!-- Formulario de creación -->
+  <form [formGroup]="compraForm" (ngSubmit)="guardar()" class="row g-3 mb-4">
+    <div class="col-md-3">
+      <label class="form-label">Valor Total</label>
+      <input type="number" formControlName="valor_total" class="form-control" />
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Estado</label>
+      <select formControlName="estado" class="form-control">
+        <option value="Pendiente">Pendiente</option>
+        <option value="Completada">Completada</option>
+        <option value="Cancelada">Cancelada</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">ID Proveedor (Opcional)</label>
+      <input type="text" formControlName="id_proveedor" class="form-control" placeholder="UUID del proveedor" />
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+      <button type="submit" class="btn btn-primary w-100" [disabled]="compraForm.invalid">Guardar</button>
+    </div>
+  </form>
+
+  <!-- Tabla de registros -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Valor Total</th>
+        <th>Estado</th>
+        <th>ID Proveedor</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of compras(); track item.id_compra) {
+        <tr>
+          <td>{{ item.fecha }}</td>
+          <td>{{ item.valor_total }}</td>
+          <td>{{ item.estado }}</td>
+          <td>{{ item.id_proveedor || 'Sin proveedor' }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="eliminar(item.id_compra)">Eliminar</button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="5" class="text-center">No hay compras registradas.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

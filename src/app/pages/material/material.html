@@ -1,0 +1,62 @@
+<div class="container mt-4">
+  <h2>Gestión de Materiales</h2>
+
+  <!-- Formulario de creación -->
+  <form [formGroup]="materialForm" (ngSubmit)="guardar()" class="row g-3 mb-4">
+    <div class="col-md-3">
+      <label class="form-label">Nombre</label>
+      <input type="text" formControlName="nombre" class="form-control" />
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Tipo</label>
+      <input type="text" formControlName="tipo" class="form-control" />
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Cantidad</label>
+      <input type="number" formControlName="cantidad" class="form-control" />
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Unidad</label>
+      <input type="text" formControlName="unidad" class="form-control" />
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Precio</label>
+      <input type="number" formControlName="precio" class="form-control" />
+    </div>
+    <div class="col-md-1 d-flex align-items-end">
+      <button type="submit" class="btn btn-primary w-100" [disabled]="materialForm.invalid">Guardar</button>
+    </div>
+  </form>
+
+  <!-- Tabla de registros -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th>Cantidad</th>
+        <th>Unidad</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of materiales(); track item.id_material) {
+        <tr>
+          <td>{{ item.nombre }}</td>
+          <td>{{ item.tipo }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td>{{ item.unidad }}</td>
+          <td>{{ item.precio }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="eliminar(item.id_material)">Eliminar</button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="6" class="text-center">No hay materiales registrados.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

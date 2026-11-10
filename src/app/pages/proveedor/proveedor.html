@@ -1,0 +1,56 @@
+<div class="container mt-4">
+  <h2>Gestión de Proveedores</h2>
+
+  <!-- Formulario de creación -->
+  <form [formGroup]="proveedorForm" (ngSubmit)="guardar()" class="row g-3 mb-4">
+    <div class="col-md-3">
+      <label class="form-label">Nombre</label>
+      <input type="text" formControlName="nombre" class="form-control" />
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Teléfono</label>
+      <input type="text" formControlName="tel" class="form-control" />
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Dirección</label>
+      <input type="text" formControlName="direccion" class="form-control" />
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Correo</label>
+      <input type="email" formControlName="correo" class="form-control" />
+    </div>
+    <div class="col-md-1 d-flex align-items-end">
+      <button type="submit" class="btn btn-primary w-100" [disabled]="proveedorForm.invalid">Guardar</button>
+    </div>
+  </form>
+
+  <!-- Tabla de registros -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of proveedores(); track item.id_proveedor) {
+        <tr>
+          <td>{{ item.nombre }}</td>
+          <td>{{ item.tel }}</td>
+          <td>{{ item.direccion }}</td>
+          <td>{{ item.correo }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="eliminar(item.id_proveedor)">Eliminar</button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="5" class="text-center">No hay proveedores registrados.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
