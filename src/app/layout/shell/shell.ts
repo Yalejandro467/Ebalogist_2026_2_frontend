@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import {
   RouterLink,
@@ -13,11 +12,18 @@ import {
   styleUrl: './shell.css',
 })
 export class Shell {
+
+  sidebarRetraido = false;
+
+  alternarSidebar(): void {
+    this.sidebarRetraido = !this.sidebarRetraido;
+  }
+
   readonly menu = [
-    { ruta: '/usuarios', etiqueta: 'Usuarios' },
-    { ruta: '/clientes', etiqueta: 'Clientes' },
-    { ruta: '/productos', etiqueta: 'Productos' },
-    { ruta: '/pedidos', etiqueta: 'Pedidos' },
-    { ruta: '/detalles-pedido', etiqueta: 'Detalles de pedido' },
+    { ruta: '/usuarios', etiqueta: 'Usuarios', icono: 'US' },
+    { ruta: '/clientes', etiqueta: 'Clientes', icono: 'CL' },
+    { ruta: '/productos', etiqueta: 'Productos', icono: 'PR' },
+    { ruta: '/pedidos', etiqueta: 'Pedidos', icono: 'PE' },
+    { ruta: '/detalles-pedido', etiqueta: 'Detalles de pedido', icono: 'DP' },
   ];
 }
