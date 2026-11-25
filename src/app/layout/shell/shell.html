@@ -1,37 +1,68 @@
+﻿<div class="layout">
 
-<div class="layout">
-  <!-- Agregamos la clase condicional si isSidebarCollapsed es verdadero -->
-  <aside class="sidebar" [class.collapsed]="isSidebarCollapsed">
-    
-    <!-- Cabecera del sidebar con el botón para retraer/expandir -->
-    <div class="sidebar-header">
-      @if (!isSidebarCollapsed) {
-        <div>
+  <aside class="sidebar" [class.retraido]="sidebarRetraido">
+
+    <div class="marca">
+      <div class="marca-icono">E</div>
+
+      @if (!sidebarRetraido) {
+        <div class="marca-texto">
           <h1>E-Balogist</h1>
           <p class="subtitulo">Gestión del negocio</p>
         </div>
       }
-      <!-- Botón de control obligatorio para el parcial -->
-      <button class="toggle-btn" (click)="toggleSidebar()" title="Ocultar / Mostrar menú">
-        {{ isSidebarCollapsed ? '▶' : '◀' }}
+
+      <button
+        class="boton-sidebar"
+        type="button"
+        (click)="alternarSidebar()"
+        [attr.aria-expanded]="!sidebarRetraido"
+        [attr.aria-label]="sidebarRetraido ? 'Expandir menú' : 'Contraer menú'"
+        [title]="sidebarRetraido ? 'Expandir menú' : 'Contraer menú'">
+        ☰
       </button>
     </div>
+
+    @if (!sidebarRetraido) {
+      <p class="menu-titulo">MENÚ PRINCIPAL</p>
+    }
 
     <nav>
       @for (item of menu; track item.ruta) {
         <a
           [routerLink]="item.ruta"
           routerLinkActive="activo"
-          [title]="item.etiqueta"
-        >
-          <!-- Si está contraído, podemos mostrar solo un icono o la primera letra, o mantener el texto si prefieres -->
-          <span class="etiqueta">{{ item.etiqueta }}</span>
+          [title]="item.etiqueta">
+
+          @if (!sidebarRetraido) {
+            <span class="texto-menu">{{ item.etiqueta }}</span>
+          }
+
         </a>
       }
     </nav>
+
+    <div class="sidebar-pie">
+      <span class="estado-api"></span>
+
+      @if (!sidebarRetraido) {
+        <span>Panel administrativo</span>
+      }
+    </div>
+
   </aside>
 
   <main class="contenido">
-    <router-outlet></router-outlet>
+
+    <div class="barra-superior">
+      <span>Panel de gestión</span>
+      <span class="etiqueta-superior">E-BALOGIST</span>
+    </div>
+
+    <div class="pagina">
+      <router-outlet></router-outlet>
+    </div>
+
   </main>
+
 </div>

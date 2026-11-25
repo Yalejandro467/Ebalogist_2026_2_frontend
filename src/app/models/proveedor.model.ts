@@ -14,3 +14,8 @@ export interface ProveedorCreate {
 }
 
 export type ProveedorUpdate = Partial<ProveedorCreate>;
+export interface ProveedorResponse<T> {
+  data: T;
+  status: number;
+  message: string;
+}

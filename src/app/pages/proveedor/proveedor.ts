@@ -31,12 +31,16 @@ export class ProveedorComponent implements OnInit {
     this.cargarProveedores();
   }
 
-  cargarProveedores(): void {
-    this.proveedorService.listar().subscribe({
-      next: (data) => this.proveedores.set(data),
-      error: (err) => console.error('Error al cargar proveedores', err)
-    });
-  }
+cargarProveedores(): void {
+  this.proveedorService.listar().subscribe({
+    next: (res) => {
+      this.proveedores.set(res.data);
+    },
+    error: (err) => {
+      console.error('Error al cargar proveedores', err);
+    }
+  });
+}
 
   guardar(): void {
     if (this.proveedorForm.invalid) return;

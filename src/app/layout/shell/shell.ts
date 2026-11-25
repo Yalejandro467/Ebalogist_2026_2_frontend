@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
 import {
   RouterLink,
   RouterLinkActive,
@@ -8,8 +7,7 @@ import {
 
 @Component({
   selector: 'app-shell',
-  standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, RouterOutlet],
+  imports: [RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './shell.html',
   styleUrl: './shell.css',
 })
@@ -28,6 +26,11 @@ export class Shell {
     { ruta: '/compras', etiqueta: 'Compras' },
   ];
 
+  sidebarRetraido = false;
+
+alternarSidebar(): void {
+  this.sidebarRetraido = !this.sidebarRetraido;
+}
   // Función para alternar el estado del sidebar
   toggleSidebar(): void {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
