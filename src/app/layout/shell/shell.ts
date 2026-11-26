@@ -16,7 +16,6 @@ export class Shell {
   isSidebarCollapsed = false;
 
   readonly menu = [
-    { ruta: '/usuarios', etiqueta: 'Usuarios' },
     { ruta: '/clientes', etiqueta: 'Clientes' },
     { ruta: '/productos', etiqueta: 'Productos' },
     { ruta: '/pedidos', etiqueta: 'Pedidos' },

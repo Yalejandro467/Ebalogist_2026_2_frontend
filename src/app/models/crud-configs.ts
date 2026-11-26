@@ -60,22 +60,7 @@ export const CRUD_CONFIGS: Record<string, CrudConfig> = {
 
   // ===== Entidades de la plantilla (no existen en el backend) =====
 
-  usuarios: {
-    key: 'usuarios',
-    title: 'Usuarios',
-    description: 'Administra los usuarios registrados en E-Balogist.',
-    basePath: '/usuarios',
-    listPath: '/usuarios/',
-    filterLabel: 'Filtrar por ID',
-    filterPlaceholder: 'ID del usuario',
-    fields: [
-      { key: 'nombre', label: 'Nombre', type: 'text', required: true },
-      { key: 'correo', label: 'Correo electrónico', type: 'email', required: true },
-      { key: 'activo', label: 'Estado', type: 'boolean' }
-    ],
-    columns: ['id', 'nombre', 'correo', 'activo']
-  },
-
+ 
   clientes: {
     key: 'clientes',
     title: 'Clientes',
